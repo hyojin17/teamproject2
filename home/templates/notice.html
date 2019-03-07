@@ -1,10 +1,25 @@
 {% extends 'base.html'%}
 
 {% block contents %}
-
+<head>
+    <style>
+        #popup{
+        display:none;
+        }
+        #question:hover + #popup{
+            display: block;
+            padding: 20px;
+            background-color: lightgray;
+        }
+            
+    </style>
+</head>
 
 <body>
 <div class="container" >
+    <div class="container"style="margin-top:100px;">
+            <i id = "question" class="far fa-question-circle"></i> <div class="container" id="popup"><p>공지사항의 자세한 내용을 확인해보세요!</p></div>
+    </div>
     <br><br>
     {% for notice in nposts %}
     <div class="card" style="width: 60rem; text-align:center; margin: 0 auto;">
@@ -12,7 +27,8 @@
                 <h5 class="card-title">{{notice.title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{notice.pub_date}}</h6>
                 <p class="card-text">{{notice.summary}}</p>
-                <a href="{% url 'ndetail' notice.id %}" class="card-link">...more</a>
+                <a class="btn btn-warning" href="{% url 'ndetail' notice.id %}" role="button">더 보기</a>
+
 
             </div>
     </div>
